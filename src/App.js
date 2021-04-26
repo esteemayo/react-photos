@@ -1,24 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import axios from "axios";
+
+import NavBar from "./components/NavBar";
+import Photos from "./components/Photos";
+import Footer from "./components/Footer";
+import About from "./Pages/About";
+
+import "bootstrap/dist/css/bootstrap.css";
+import "react-toastify/dist/ReactToastify.css";
+import "./App.css";
+
+axios.defaults.baseURL = "http://jsonplaceholder.typicode.com";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar />
+      <ToastContainer />
+      <div className="container">
+        <Switch>
+          <Route exact path="/" component={Photos} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </div>
+      <Footer />
+    </Router>
   );
 }
 
